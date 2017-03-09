@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-controller="View1Ctrl">
+<div class="center main-text">
+    <br><br>
+    <a href="" ng-click="demo();">hahah</a>
+    <!--执行demo()函数跳转到锚点-->
+
+    <p id="test">Welcome to SaLibs.</p>
+    <!--此处设置id-->
+    <!--一下部分为了增加HTML代码的长度，并无实际意义-->
+    <a>This is the partial for view 1.</a>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <p>This is the partial for view 1.</p>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <p>This is the partial for view 1.</p>
+</div>
+</body>
+<script type="text/javascript">
+	angular.module('myApp', [])
+    .run(['$anchorScroll', function($anchorScroll) {
+        $anchorScroll.yOffset = 50;   
+        // 默认向下便宜50px
+        // 在此处配置偏移量
+    }])
+
+    .controller('View1Ctrl', ['$scope', '$location', '$anchorScroll', function ($scope, $location, $anchorScroll) {
+        $scope.demo = function () {
+            $location.hash('test');
+            $anchorScroll();
+            //移动到锚点
+        };
+    }]);
+</script>
+</html>

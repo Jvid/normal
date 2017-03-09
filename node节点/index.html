@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<!-- 这是一个注释主要检查ie下document.getElementsByTagName('*')用的 -->
+	<p>
+	<a href="">aaa</a>
+	<span>haha</span>
+	</p>
+	<div></div>
+	<h1 dir="rtl" id="f" class="a" title="test">这是一个dir的rtl测试</h1>
+	<h1 dir="ltr">这是一个dir的ltr测试</h1>
+
+</body>
+<script type="text/javascript">
+	var oP = document.getElementsByTagName('p')[0];
+	console.log(oP.ownerDocument)
+	console.log(oP.hasChildNodes());
+	console.log(oP);
+	console.log(oP.childNodes)
+	console.log(typeof oP.childNodes)
+	var arrayOfNodes = Array.prototype.slice.call(oP.childNodes,0);
+	console.log(arrayOfNodes)
+	console.log(oP.firstChild)
+	if(oP.nodeType == 1){
+		console.log('nodeType',oP.nodeName,oP.nodeValue);//书上讲的：-------> nodeName 中保存的始终都是元素的标签名，而 nodeValue 的值则始终为 null 。
+	}
+	var oA = document.getElementsByTagName('a')[0];
+	console.log(oA.nextSibling);
+	var oDiv = document.getElementsByTagName('div')[0];
+	oDiv.appendChild(oP.cloneNode(true))//参数是true的时候将里边的子节点也复制进去，如果是false那么只复制这个标签本身
+	console.log(document.domain);
+	var allNodes = document.getElementsByTagName('*');
+	console.log(allNodes);
+	console.log(Array.prototype.slice.call(allNodes,0));
+	document.write("<strong>" + Date.parse((new Date()).toString()) + "</strong>");
+	var f = document.getElementById('f');
+	console.log(f.style);
+	f.setAttribute('style','color:red')//ie9以下不兼容
+
+	//输出一个节点所有的属性及属性值
+	function outputAttributes(element){
+		var pairs = new Array(),
+			attrName,
+			attrValue,
+			i,
+			len;
+		for (i=0, len=element.attributes.length; i < len; i++){
+			attrName = element.attributes[i].nodeName;
+			attrValue = element.attributes[i].nodeValue;
+			pairs.push(attrName + "=\"" + attrValue + "\"");
+		}
+		return pairs.join(" ");
+	}
+	console.log(f.attributes)
+	console.log(outputAttributes(f));
+</script>
+</html>

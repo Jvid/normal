@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0}
+        .wrap{
+            width: 400px;
+            height: 600px;
+            border: 1px solid brown;
+            margin: 20px auto;
+        }
+        .wrap ul{
+            width: 100%;
+            height:30px;
+            list-style: none;
+        }
+        .wrap ul li{
+            width: 99px;
+            height: 30px;
+            border-right: 1px solid brown;
+            border-bottom: 1px solid brown;
+            float: left;
+            text-align: center;
+            line-height:30px;
+            cursor: pointer;
+        }
+        .wrap .sh{
+            width: 100%;
+            height: 569px;
+            background: #eeeeee;
+        }
+        .wrap .sh .shDiv{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            display: none;
+        }
+        .wrap .sh .shDiv:nth-of-type(1){
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav">
+        <li>home</li>
+        <li>list</li>
+        <li>news</li>
+        <li>mine</li>
+    </ul>
+    <div class="sh">
+        <div class="shDiv">home-page</div>
+        <div class="shDiv">list-page</div>
+        <div class="shDiv">news-page</div>
+        <div class="shDiv">mine-page</div>
+    </div>
+</div>
+<script type="text/javascript">
+    var ulObj = document.getElementsByClassName('nav')[0];
+    var lis = ulObj.getElementsByTagName('li');
+    var shDiv = document.getElementsByClassName('shDiv');
+    for(var i = 0, len = lis.length ; i < len ; i++){
+        lis[i].index = i;
+    }
+    ulObj.onclick = function(e){
+        var ev = e || window.event
+        item(ev.target.index);
+    }
+    function item(n){
+        for(var j = 0,len = shDiv.length; j < len;j++){
+            shDiv[j].style.display = 'none';
+        }
+        shDiv[n].style.display = 'block';
+    }
+</script>
+</body>
+</html>

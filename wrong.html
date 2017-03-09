@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="lib/jquery-2.1.1.js"></script>
+</head>
+<body>
+	<table class="service-right">
+		<tbody></tbody>
+	</table>
+</body>
+<script type="text/javascript">
+    $(function(){
+        (function generateTable(){
+            var tableArr = [{"lesson":"0至100","charge":"5"},
+                {"lesson":"100至200","charge":"4.5"},
+                {"lesson":"200至300","charge":"4"},
+                {"lesson":"300至400","charge":"3.5"},
+                {"lesson":"400至500","charge":"3"},
+                {"lesson":"500至600","charge":"2.5"},
+                {"lesson":"600以上","charge":"2"}];
+
+            var $tBody = $('');
+            for (var i = 0 ; i < tableArr.length ; i++){
+                var $tr = $('<tr><td>'+tableArr[i].lesson+'</td>'+tableArr[i].charge+'<td></td></tr>');
+                $('.service-right').find('tbody').append($tr);
+            }
+        })();
+    });
+</script>
+</html>

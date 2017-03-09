@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script type="text/javascript" src="../lib/angular.min.js"></script>
+<body ng-controller="myCtrl">
+	<input type="text" ng-model="test" ng-change="tHttp()">
+</body>
+<script type="text/javascript">
+	angular.module('myApp', [])
+	.controller('myCtrl', ['$scope','$http', function($scope,$http){
+		$scope.test = '请输入内容';
+		$scope.tHttp = function (){
+			console.log($scope.test);
+			$http({
+	            url:'http://139.129.223.20/tigerspring/rest/searchByFluzzy',
+	            headers:{'Content-Type':'application/json;charset=utf-8'},
+	            method: 'POST',
+	            data: JSON.stringify({"content":$scope.test})
+	        }).success(function (res) {
+	        	console.log(res)
+	        });
+		}
+	}])
+
+</script>
+</html>

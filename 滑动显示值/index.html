@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>拖动显示值</title>
+    <style type="text/css">
+        .line{
+            width: 500px;
+            height: 20px;
+            background: gray;
+            border-radius: 10px;
+            position: relative;
+            margin: 30px 0 0 300px;
+        }
+        .ball{
+            width: 30px;
+            height:30px;
+            border-radius: 50%;
+            position: absolute;
+            left: 100px;
+            top:-5px;
+            background: blue;
+        }
+        #scollValue{
+            position: fixed;
+            right: 0;
+            top:100px;
+        }
+    </style>
+</head>
+<body ng-controller="myCtrl">
+<div class="line">
+    <div class="ball"></div>
+</div>
+<p>当前的值是<span class="result"></span></p>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<p id="scollValue"></p>
+</body>
+<script type="text/javascript">
+    var oBox = document.getElementsByClassName('ball')[0];
+    var res = document.getElementsByClassName('result')[0];
+    var scollValue = document.getElementById('scollValue');
+    var dis;
+    oBox.onmousedown = function (e){
+        var e = e || window.event;
+        disX = e.clientX - this.offsetLeft;
+        document.onmousemove = function (e){
+            var e = e || window.event;
+            dis = (e.clientX - disX) < -15 ? -15 : ((e.clientX - disX) > 485) ? 485 : (e.clientX - disX);
+            res.innerText = dis+15;
+            oBox.style.left = dis + 'px';
+        };
+        document.onmouseup = function (){
+            document.onmousemove = null;
+            document.onmouseup = null;
+        };
+        return false;
+    }
+    window.onmousewheel = function(){
+        scollValue.innerText = document.body.scrollTop;
+    }
+
+//name 是关键字
+
+// var name = ['1','2','3','4']
+// console.log(typeof name)
+// console.log(name.length)
+// function test(arr){
+//     console.log(arr);
+//     console.log(typeof arr)
+// }
+// test(name);
+
+</script>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../lib/angular.min.js" ></script>
+	</head>
+	<body ng-controller="myCtrl">
+		
+	</body>
+	<script type="text/javascript">
+		angular.module('myApp',[])
+		.controller('myCtrl',function($scope,$http){
+			$http.get('http://jingduo.tk/data/area.json').success(function(data){
+				console.log(data)
+			})
+		})
+	</script>
+</html>

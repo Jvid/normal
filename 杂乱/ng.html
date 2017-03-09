@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            list-style: none;
+        }
+        .one{
+            color: red;
+        }
+        .two{
+            color:blue;
+        }
+        .three{
+            color:green;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+<ul>
+    <li ng-repeat="x in numbers" ng-class="{'one':'one','two':'two','three':'three'}[juge(x)]">{{x}}</li>
+</ul>
+</body>
+<script type="text/javascript">
+    angular.module('myApp',[])
+            .controller('myCtrl',function($scope){
+                $scope.numbers = [1,2,3,4,5,6,7];
+                $scope.juge = function(a){
+                    if(a<3){
+                        return 'one';
+                    }
+                    if(a<5){
+                        return 'two';
+                    }
+                    return 'three';
+
+                }
+            })
+</script>
+</html>

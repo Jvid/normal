@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding:0;
+        }
+        .wrap{
+            width: 400px;
+            height: 150px;
+            border: 1px solid brown;
+            margin: 30px auto;
+            position: relative;
+        }
+        .btn{
+            position: absolute;
+            top: 0;
+            width: 50px;
+            height: 150px;
+            text-align: center;
+            line-height: 150px;
+            font-size: 50px;
+            cursor: pointer;
+            user-select:none;
+        }
+        .left{
+            left: 0;
+        }
+        .right{
+            right:0;
+        }
+        .cal_wrap{
+            width: 300px;
+            height: 150px;
+            position: absolute;
+            left: 55px;
+            top: 0;
+            overflow: hidden;
+        }
+        .cal{
+            width: 500px;
+            position: absolute;
+            left: -100px;
+            top:0;
+            height: 150px;
+        }
+        .cal_day{
+            margin-top: 10px;
+            width: 88px;
+            height: 128px;
+            border:1px solid brown;
+            margin-right: 10px;
+            float: left;
+        }
+        .mon{
+            width: 100%;
+            height: 30px;
+            background: #EDD813;
+            text-align: center;
+            line-height: 30px;
+        }
+        .week{
+            width: 100%;
+            height: 30px;
+            background: #EDD813;
+            text-align: center;
+            line-height: 30px;
+        }
+        .day{
+            width: 100%;
+            height:68px;
+            text-align: center;
+            line-height: 68px;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+    <div class="wrap">
+        <div class="btn left" ng-click="moveLeft()">&lt;</div>
+        <div class="btn right" ng-click="moveRight()">&gt;</div>
+        <div class="cal_wrap">
+            <div class="cal">
+                <div class="cal_day" ng-repeat="item in numbers">
+                    <p class="mon" ng-bind="jugeMonth(getNowDate.mon)"></p>
+                    <p class="day" ng-bind="getNowDate.day+item"></p>
+                    <p class="week" ng-bind="jugeWeek(getNowDate.weekDay+item)"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    angular.module('myApp',[])
+            .factory('move',function($rootScope){
+                return myFactory = {
+                    moveLeft : function(){
+                        $rootScope.jugeNum = 1;
+                        //页面加载的时候创建一个保存现在星期几等加加后就是添加元素的星期
+                        $rootScope.tempDay++;
+                        $('.cal').stop().animate({'left' : ($('.cal').get(0).offsetLeft - 100)},300,function(){
+                            $('.cal_day').eq(0).remove();
+                            $('.cal').css({'left':-100});
+                            //移除第一个div后最后一个div的号数，如果等于这个月最多的天数就显示1号，月加上1，然后重新获得月的英文，否则显示当前这个号数加1
+                            if((parseInt($('.cal_day').eq(3).find('.day').text()))==$rootScope.maxDay){
+                                $('.cal').append($('<div class="cal_day"><p class="mon">'+ myFactory.jugeMonth($rootScope.obj.mon + 1) +'</p><p class="day">'+ 1 +'</p><p class="week">'+ myFactory.jugeWeekDay($rootScope.tempDay) +'</p></div>'))
+                            }else{
+                                $('.cal').append($('<div class="cal_day"><p class="mon">'+ myFactory.jugeMonth($rootScope.obj.mon) +'</p><p class="day">'+ (parseInt($('.cal_day').eq(3).find('.day').text())+1) +'</p><p class="week">'+  myFactory.jugeWeekDay($rootScope.tempDay) +'</p></div>'))
+                            }
+                        });
+                    },
+                    moveRight : function(){
+                        $rootScope.jugeNum = 1;
+                        //点击左边的时候让这个星期减减，但由于现在显示的是中间div的星期几所以常见的要加上3
+                        $rootScope.tempDay--;
+                        $('.cal').stop().animate({'left' : ($('.cal').get(0).offsetLeft +100)},300,function(){
+                            $('.cal_day').eq(4).remove();
+                            $('.cal').css({'left':-100});
+                            //移除最后一个div后，判断当前第一个是不是1号，如果是1号，月数减1并重新获取月数的英文，并将当前的号数显示为上个月最大号数
+                            if((parseInt($('.cal_day').eq(0).find('.day').text()))==1){
+                                $('.cal').prepend($('<div class="cal_day"><p class="mon">'+ myFactory.jugeMonth($rootScope.obj.mon - 1) +'</p><p class="day">'+$rootScope.preMonthDay+'</p><p class="week">'+ myFactory.jugeWeekDay($rootScope.tempDay+3) +'</p></div>'))
+                            }else{
+                                $('.cal').prepend($('<div class="cal_day"><p class="mon">'+ myFactory.jugeMonth($rootScope.obj.mon) +'</p><p class="day">'+ (parseInt($('.cal_day').eq(0).find('.day').text())-1) +'</p><p class="week">'+ myFactory.jugeWeekDay($rootScope.tempDay+3) +'</p></div>'))
+                            }
+                        })
+                    },
+                    getNowDate : function(){
+                        //获取当前的日期
+                        $rootScope.obj = {};
+                        $rootScope.obj.nowDate = new Date();
+                        $rootScope.obj.mon = $rootScope.obj.nowDate.getMonth()+1;
+                        $rootScope.obj.day = $rootScope.obj.nowDate.getDate();
+                        $rootScope.obj.weekDay = $rootScope.obj.nowDate.getDay();
+                        return $rootScope.obj;
+                    },
+                    jugeMonth : function(m){
+                        //判断月，并且获取上个月最多的天数，并将这个月保存下来
+                        switch ((m+12)%12){
+                            case 1:
+                                $rootScope.preMonthDay = 31;
+                                $rootScope.obj.mon = 1;
+                                $rootScope.maxDay = 31;
+                                return 'Jan';
+                                break;
+                            case 2:
+                                $rootScope.preMonthDay = 31;
+                                $rootScope.obj.mon = 2;
+                                $rootScope.maxDay = 28;
+                                return 'Feb';
+                                break;
+                            case 3:
+                                $rootScope.preMonthDay = 28;
+                                $rootScope.obj.mon = 3;
+                                $rootScope.maxDay = 31;
+                                return 'Mar';
+                                break;
+                            case 4:
+                                $rootScope.preMonthDay = 31;
+                                $rootScope.obj.mon = 4;
+                                $rootScope.maxDay = 30;
+                                return 'Apr';
+                                break;
+                            case 5:
+                                $rootScope.preMonthDay = 30;
+                                $rootScope.obj.mon = 5;
+                                $rootScope.maxDay = 31;
+                                return 'May';
+                                break;
+                            case 6:
+                                $rootScope.preMonthDay = 31;
+                                $rootScope.obj.mon = 6;
+                                $rootScope.maxDay = 30;
+                                return 'Jun';
+                                break;
+                            case 7:
+                                $rootScope.preMonthDay = 30;
+                                $rootScope.obj.mon = 7;
+                                $rootScope.maxDay = 31;
+                                return 'Jul';
+                                break;
+                            case 8:
+                                $rootScope.preMonthDay = 31;
+                                $rootScope.obj.mon = 8;
+                                $rootScope.maxDay = 31;
+                                return 'Aug';
+                                break;
+                            case 9:
+                                $rootScope.preMonthDay = 31;
+                                $rootScope.obj.mon = 9;
+                                $rootScope.maxDay = 30;
+                                return 'Sep';
+                                break;
+                            case 10:
+                                $rootScope.preMonthDay = 30;
+                                $rootScope.obj.mon = 10;
+                                $rootScope.maxDay = 31;
+                                return 'Oct';
+                                break;
+                            case 11:
+                                $rootScope.preMonthDay = 31;
+                                $rootScope.obj.mon = 11;
+                                $rootScope.maxDay = 30;
+                                return 'Nov';
+                                break;
+                            case 0:
+                                $rootScope.preMonthDay = 30;
+                                $rootScope.obj.mon = 12;
+                                $rootScope.maxDay = 31;
+                                return 'Dec';
+                                break;
+                        }
+                    },
+                    jugeWeekDay:function(n){
+                        //当为负数很大时候需要先对7取余，然后加7变为整数，如果是一个大的整数就需要最后的取余
+                        switch((n%7+7)%7){
+                            case 1:
+                                $rootScope.jugeNum == 1 ? null : $rootScope.tempDay = 1;
+                                return 'Mon';
+                                break;
+                            case 2:
+                                $rootScope.jugeNum == 1 ? null : $rootScope.tempDay = 2;
+                                return 'Tues';
+                                break;
+                            case 3:
+                                $rootScope.jugeNum == 1 ? null : $rootScope.tempDay = 3;
+                                return 'Wen';
+                                break;
+                            case 4:
+                                $rootScope.jugeNum == 1 ? null : $rootScope.tempDay = 4;
+                                return 'Thur';
+                                break;
+                            case 5:
+                                $rootScope.jugeNum == 1 ? null : $rootScope.tempDay = 5;
+                                return 'Fri';
+                                break;
+                            case 6:
+                                $rootScope.jugeNum == 1 ? null : $rootScope.tempDay = 6;
+                                return 'Sat';
+                                break;
+                            case 0:
+                                $rootScope.jugeNum == 1 ? null : $rootScope.tempDay = 7;
+                                return 'Sun';
+                                break;
+                        }
+
+                    }
+                }
+            })
+            .controller('myCtrl',['$scope','$rootScope','move',function($scope,$rootScope,move){
+                    //左右按键点击事件
+                    $scope.moveLeft = move.moveLeft;
+                    $scope.moveRight = move.moveRight;
+                    //将当前日期保存在repeat中使用
+                    $rootScope.getNowDate = move.getNowDate();
+                    //为5个div显示不同号数和星期使用
+                    $scope.numbers = [-2,-1,0,1,2];
+
+                    $scope.jugeWeek = move.jugeWeekDay;
+                    $scope.jugeMonth = move.jugeMonth;
+                }]);
+</script>
+</body>
+</html>

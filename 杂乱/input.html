@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="val">
+<p id="res"></p>
+</body>
+<script type="text/javascript">
+    var val = document.getElementById('val');
+    var res = document.getElementById('res');
+    val.oninput = function(){
+        res.innerText = val.value;
+    };
+</script>
+</html>

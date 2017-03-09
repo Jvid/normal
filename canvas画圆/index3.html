@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弧度计数</title>
+    <style>
+        canvas{
+            border: 1px solid black;
+            margin: 0 auto 0 300px;
+            background: rgba(0,0,0,.3);
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="500"></canvas>
+</body>
+<script type="text/javascript">
+    var myCanvas = document.getElementById('myCanvas');
+    var tag = Math.PI / 180;
+    var ctx = myCanvas.getContext("2d");
+    var circle = {
+        x : 200,    //圆心的x轴坐标值
+        y : 200,    //圆心的y轴坐标值
+        r : 50      //圆的半径
+    };
+    var i = 90;
+    var m = 0;
+    var timer = setInterval(function(){
+        ctx.clearRect(0,0,500,500)
+        //开始一个新的绘制路径
+        ctx.beginPath();
+        //设置弧线的颜色为蓝色
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 20;
+        //沿着坐标点(100,100)为圆心、半径为50px的圆的顺时针方向绘制弧线
+        ctx.arc(circle.x, circle.y, circle.r, 0, 360*tag, false);
+        //按照指定的路径绘制弧线
+        ctx.stroke();
+        ctx.closePath();
+
+
+
+        //开始一个新的绘制路径
+        ctx.beginPath();
+        //设置弧线的颜色为蓝色
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = 20;
+        //沿着坐标点(100,100)为圆心、半径为50px的圆的顺时针方向绘制弧线
+        ctx.arc(circle.x, circle.y, circle.r, 90*tag, i*tag, false);
+        //按照指定的路径绘制弧线
+        ctx.stroke();
+        ctx.closePath();
+
+
+        ctx.font = '20px 黑体';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.strokeStyle = '#DF5326';
+//        ctx.font = 'bold 144px arial';
+        ctx.fillStyle = 'red';
+        ctx.fillText(m, 200,200);
+
+
+
+
+
+        i+=3;
+        m++;
+        if(i>300){
+            clearInterval(timer)
+        }
+
+
+    },30)
+
+
+
+</script>
+</html>

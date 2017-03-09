@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		p{
+			color: red;
+		}
+		p:not(.a){
+			color:green;
+		}
+		p:not(#a){
+			color: cyan;
+		}
+	</style>
+</head>
+<body>
+	<p>001</p>
+	<p class="a">002</p>
+	<p id="a">003</p>
+	<p>004</p>
+	<p>005</p>
+</body>
+</html>

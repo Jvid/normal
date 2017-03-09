@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>my Angular</title>
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<style>
+		p{height: 30px;margin-top: 3px;background: yellow}
+		.one{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="angular_wrap2" ng-app="myApp2" ng-controller="mycontrol">
+		<input type="text" ng-model="num">
+		<!-- <p ng-repeat="x in allnum">{{x}}</p> -->
+		<p ng-repeat="x in allnum" >{{x | donum:num}}</p>
+	</div>
+</body>
+<script type="text/javascript">
+	var app2 = angular.module('myApp2',[]);
+	app2.controller('mycontrol',function($scope){
+		$scope.personname = 'jack';
+		$scope.allnum = [1,2,3,4,5,6,7,8,9];
+		$scope.juge = false;
+	})
+	app2.filter('donum',function(){
+		return function(_number,num){
+			if(!num){
+				if(_number%num==0){
+					return _number
+				}
+			}
+		}
+	})
+	app2.directive('doplus',function(){
+		return {
+			restrict:'AE',
+			template:"<p>Angular</p>"
+		}
+	})
+
+
+</script>
+</html>

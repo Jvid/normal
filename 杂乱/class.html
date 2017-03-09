@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.one{
+			color: red;
+		}
+		.two{
+			color: blue;
+		}
+	</style>
+</head>
+<body ng-controller="myCtrl">
+	<p ng-class="{true:'one',false:'two'}[j]">hahahhahahhah</p>
+</body>
+<script type="text/javascript" src="../lib/angular.min.js"></script>
+<script type="text/javascript">
+	
+	angular.module('myApp', [])
+	.controller('myCtrl', ['$scope', function($scope){
+		$scope.j = true;
+	}])
+</script>
+</html>

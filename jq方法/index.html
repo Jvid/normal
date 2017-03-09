@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../base/jquery-1.12.3.js"></script>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+//1.合并两个对象
+	//1).一般合并
+	var obj1 = {a:3,b:4,c:6};
+	var obj2 = {a:9,d:3,f:7};
+	var obj3 = $.extend({},obj1,obj2);
+	console.log(obj1)
+	console.log(obj2)
+	console.log(obj3)//{a:9,b:4,c:6,d:3,f:7};相同项后面的会覆盖调前面的
+	console.log({a:9,b:4,c:6,d:3,f:7})
+//---------------------------------------------------------------------------
+	var obj4= {a:3,b:{c:4,d:5}}
+	var obj5 = {a:6,b:{c:5}}
+	var obj6 = $.extend({},obj4,obj5);
+	console.log(obj6)//{a:9,b:{c:5}};相同项后面的会覆盖调前面的
+	console.log({a:6,b:{c:5}})
+	//2).深度合并
+	var obj7 = {a:3,b:{c:4,d:5}}
+	var obj8 = {a:6,b:{c:5}}
+	var obj9 = $.extend(true,{},obj7,obj8);
+	console.log(obj9)//{a:9,b:{c:5,d:5}};相同项后面的会覆盖调前面的
+	console.log({a:6,b:{c:5,d:5}});
+//2.给jq添加静态方法
+	$.extend({
+		add:function(a,b){return a+b},
+		minus:function(a,b){return a-b}
+	})
+	var c = $.add(2,3)+$.minus(7,5);
+	console.log(c)//7
+
+</script>
+</html>

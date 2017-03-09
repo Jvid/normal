@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../base/jquery-1.12.3.js"></script>
+</head>
+<body>
+	<div class="parent">
+	    <input type="text" />
+	</div>
+	<div class="log"></div>
+</body>
+<script type="text/javascript">
+	function log(str){
+	  $('.log').append($('<div/>').text(str));
+	}
+
+	$('.parent')
+	    .focusin(function(){log('div focusin');})
+	    .focusout(function(){log('div focusout');})
+	    .focus(function(){log('div focus');})
+	    .blur(function(){log('div blur');});
+	$('input')
+	    .focusin(function(){log('input focusin');})
+	    .focusout(function(){log('input focusout');})
+	    .focus(function(){log('input focus');})
+	    .blur(function(){log('input blur');});
+
+</script>
+</html>
