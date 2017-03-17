@@ -42,7 +42,7 @@
             border:10px solid transparent;
             border-top:10px solid red;
 
-            animation: round 7.5s linear infinite;
+            animation: round 2s ease-out .3s infinite;
         }
         @keyframes round {
             0%{transform: rotate(0deg)}
@@ -64,7 +64,7 @@
             border:10px solid transparent;
             border-top:10px solid #ff00b7;
 
-            animation: round 7s linear infinite;
+            animation: round 2s ease-out .2s infinite;
         }
         .inner3{
             display: block;
@@ -81,7 +81,7 @@
             border:10px solid transparent;
             border-top:10px solid #582bff;
 
-            animation: round 8s linear infinite;
+            animation: round 2s ease-out .1s infinite;
         }
         .inner4{
             display: block;
@@ -98,21 +98,16 @@
             border:10px solid transparent;
             border-top:10px solid #0e1a2d;
 
-            animation: round 9s linear infinite;
+            animation: round 2s ease-out infinite;
         }
     </style>
 </head>
 <body>
     <div class="wrap">
-        <div class="inner">
-            <div class="inner2">
-                <div class="inner3">
-                    <div class="inner4">
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="inner"></div>
+        <div class="inner2"></div>
+        <div class="inner3"></div>
+        <div class="inner4"></div>
     </div>
     <ul style="padding: 60px;">
         <li>animation-name:绑定的keyframes的名称</li>
