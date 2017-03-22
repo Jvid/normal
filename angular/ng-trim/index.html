@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../../lib/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<h3>ng-trim可以做到去掉前后空格</h3>
+	<input type="text" ng-trim="true" ng-model="test">
+	<p>加ng-trim------{{test}}-----------长度{{len}}</p>
+	<input type="text" ng-model="test1">
+	<p>未加ng-trim------{{test1}}-----------长度{{len1}}</p>
+</body>
+<script type="text/javascript">
+	angular.module('myApp',[])
+	.controller('myCtrl', ['$scope', function($scope){
+		$scope.test = "a";
+		$scope.$watch('test',function(newValue,oldValue){
+			$scope.len = newValue.length;
+		})
+		
+		$scope.test1 = "a";
+		$scope.$watch('test1',function(newValue,oldValue){
+			$scope.len1 = newValue.length;
+		})
+		
+	}])
+</script>
+</html>

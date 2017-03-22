@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../../lib/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<select name="book" id="" ng-options="book.price as book.name for book in books" ng-model="price"></select>
+	<p>你选的书的价格是：{{price}}</p>
+</body>
+<script type="text/javascript">
+	angular.module('myApp',[])
+	.controller('myCtrl', ['$scope', function($scope){
+		$scope.books=[{name:"Angular",price:56},{name:"Vue",price:76},{name:"React",price:30}];
+	}])
+</script>
+</html>

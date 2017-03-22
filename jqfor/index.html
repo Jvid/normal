@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		li{
+			width: 200px;
+			height: 30px;
+			line-height: 30px;
+			border:1px solid brown;
+		}
+		a{
+			display: block;
+			cursor: pointer;
+		}
+	</style>
+	<script type="text/javascript" src="../lib/jquery-2.1.1.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="ul"></ul>
+	</div>
+	<!-- <ul>
+		<li for="x in items" onclick=jugePage(x)></li>
+	</ul> -->
+</body>
+<script type="text/javascript">
+	$(function(){
+
+		var arr = [{a:1,b:2},{a:2,d:3},{a:3,b:2},{a:4,d:3}]
+
+		for(x in arr){
+			var oDiv = $('<li><a>'+ arr[x].a +'</a></li>');
+			(function(a){
+				oDiv.on('click',function(){
+					jugePage(arr[a])
+				})
+			})(x)
+			$('#ul').append(oDiv)
+		};
+		function jugePage(obj){
+			console.log(obj)
+		}
+
+	})
+</script>
+</html>

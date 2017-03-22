@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../../lib/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<label for=""><input type="checkbox" ng-model="test" value="jvid"><span>jvid</span></label>
+	<label for=""><input type="checkbox" ng-model="test" value="jing"><span>jing</span></label>
+	<label for=""><input type="checkbox" ng-model="test" value="duo"><span>duo</span></label>
+	<p ng-bind="'已经选择了'+test"></p>
+</body>
+<script type="text/javascript">
+	angular.module('myApp',[])
+	.controller('myCtrl', ['$scope', function($scope){
+		$scope.test = [];		
+	}])
+</script>
+</html>

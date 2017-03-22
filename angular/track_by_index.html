@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-app>
+	<div ng-init="arr=[1,2,3,3,3,4,4,2]">
+		<ul>
+			<li ng-repeat="x in arr track by $index" ng-bind="$index+ '' + x"></li>
+		</ul>
+	</div>
+</body>
+</html>
