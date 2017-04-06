@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	'use strict'
+	let [x = 1,y = x] = [2];
+	console.log(x,y);
+	let z = 3;
+	let [m = z,n = m] = [];
+	console.log(m,n)
+	console.log(Math);
+
+	let {round,abs,random} = Math;
+	console.log(random())
+	console.log(round(3.4))
+	console.log(abs(-3.3))
+
+	let arr = [1, 2, 3];
+	let {0 : first, [arr.length - 1] : last} = arr;
+	console.log(first,last)
+
+	let {length : len} = arr;
+	console.log('---->',len);
+
+	let {toString : s} = 'hello';
+	console.log(s)
+
+	
+</script>
+</html>

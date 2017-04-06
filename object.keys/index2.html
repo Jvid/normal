@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	function Obj(a,b,c){
+		this.a = a;
+		this.b = b;
+		this.c = c;
+		this.s = function(){
+			alert(this.a)
+		}
+	}
+	Obj.prototype.say = function(){
+		alert(this.b);
+	}
+	var obj = new Obj(1,2,3);
+	obj.say();
+	obj.s();
+	console.log(Object.keys(obj)) //["a","b","c","s"]没有say
+
+	//Object.keys(obj);将对象的可枚举属性列举为一个数组  原型链上的方法不会被列举
+</script>
+</html>

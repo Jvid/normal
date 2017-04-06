@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn1">btn1</button>
+	<button id="btn2">btn2</button>
+</body>
+<script type="text/javascript">
+	var a = function(){
+
+		alert('a');
+	}
+	a.prototype.say = function(){
+		constructor = this;
+		alert('say')
+	}
+	console.log(typeof a)
+	console.log(a instanceof Object);
+	console.log(a.prototype)
+	var b = new a();
+	document.getElementById('btn1').onclick = a;
+	document.getElementById('btn2').onclick = b.say;
+</script>
+</html>

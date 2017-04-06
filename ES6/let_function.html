@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	'use strict';
+	//普通
+	function f(){
+		alert(1)
+	};
+	f();
+	//报错 严格模式下只能在块级中申明函数
+	// if(true)function f(){
+	// 	alert(1)
+	// };
+	// f();
+	//正常
+	if(true){
+		function f(){
+			alert(1)
+		};
+		f();
+	}
+	
+</script>
+</html>
