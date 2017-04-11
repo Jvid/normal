@@ -10,9 +10,16 @@
 		.two{
 			color: blue;
 		}
+		.test{
+			/*list-style: afar;*/
+			list-style: footnotes;
+		}
 	</style>
 </head>
 <body ng-controller="myCtrl">
+	<ul>
+		<li class="test">我是一个测试</li>
+	</ul>
 	<p ng-class="{true:'one',false:'two'}[j]">hahahhahahhah</p>
 </body>
 <script type="text/javascript" src="../lib/angular.min.js"></script>

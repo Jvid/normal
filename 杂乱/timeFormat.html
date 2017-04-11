@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	// console.log((new Date()).valueOf());
+	var t = 1491818035531;
+	
+
+	function timeFormat(t,hourShow){
+		var timeNow = new Date(t);
+		var y = timeNow.getFullYear();
+		var m = timeNow.getMonth()+1;
+		var d = timeNow.getDate();
+		var h = timeNow.getHours(); 
+		var min = timeNow.getMinutes();  
+		var str = hourShow ? (y+'/'+m+'/'+d+'   '+h+':'+min) : y+'/'+m+'/'+d;
+		return str;
+	}
+	console.log(timeFormat(t));
+</script>
+</html>
