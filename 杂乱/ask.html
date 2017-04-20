@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	<script type="text/javascript">
+	var obj ={
+       'a':{
+          'b':{
+                'c':'ss'
+          }
+        },
+        'd':'ssee'
+	} 
+	var finalObj = {}
+	function objFormat(obj,k) {
+		var k = k || '';
+		for(x in obj){
+			var k1 = k + x;
+			var tempObj = {}
+			if(typeof obj[x] != "object"){
+				finalObj[k1] = obj[x];
+			}else{
+				k1+='.'
+				objFormat(obj[x],k1)
+			}
+		}
+		return finalObj;
+	}
+	console.log(objFormat(obj))
+	var str='a.b.c=ss&a.h.d=ff&a.e=gg'
+	function strObjFormat(str){
+		var arr = str.split('&')
+		var stObj = {};
+		function inFn(k,v,nObj){
+			var k1 = '';
+			if(k.indexOf('.') == -1){
+				nObj[k] = v;
+
+			}else{
+				
+				if(k.substring(0,k.indexOf('.'))){
+					k1 = k.substring(0,k.indexOf('.'));
+				}
+				k = k.substring(k.indexOf('.')+1);
+				nObj[k1] = {}
+				inFn(k,v,nObj[k1])
+			}
+		}
+		for( x in arr){
+			var nObj = {};
+			var k = arr[x].split('=')[0];
+			var v = arr[x].split('=')[1];
+			inFn(k,v,nObj)
+			stObj = $.extend(true,{},stObj,nObj);
+		}
+		return stObj
+	}
+	console.log(strObjFormat(str))
+</script>
+</script>
+</html>
