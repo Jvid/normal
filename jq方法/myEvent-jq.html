@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0
+		}
+		#btn{
+			width: 400px;
+			height: 300px;
+			border:1px solid red;
+			margin: 30px auto;
+		}
+	</style>
+	<script type="text/javascript" src="../base/jquery-1.12.3.js"></script>
+</head>
+<body>
+	<div id="btn">slide box(鼠标点下去滑动div大于50弹框)</div>
+</body>
+<script type="text/javascript">
+	$(function() {
+		$('#btn').on('jingduo',function(){
+			alert('I am Jing Duo')
+		})
+		var startX,startY,endX,endY;
+		$('#btn').on('mousedown',function(event){
+			startX = event.pageX;
+			startY = event.pageY;
+		})
+		$('#btn').on('mouseup',function(event){
+			endX = event.pageX;
+			endY = event.pageY;
+			if(Math.abs(endX-startX) > 50 || Math.abs(endY-startY)){
+				$(this).trigger('jingduo')
+			}
+		})
+	})
+</script>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0
+		}
+		.wrap{
+			width: 400px;
+			height: 550px;
+			border:1px solid #2b2b2b;
+			margin: 30px auto;
+			position: relative;
+		}
+		.input{
+			width: 80%;
+			margin:30px 10%;
+			box-sizing: border-box;
+			height: 45px;
+			line-height: 45px;
+			/*border:1px solid blue;*/
+		}
+		.input div{
+			display: inline-block;
+			vertical-align: middle;
+			text-align: center;
+			line-height: 45px;
+		}
+		.input .text{
+			width: 73%;
+			height: 45px;
+			margin-right:5%;
+			box-sizing: border-box;
+			border:1px solid blue;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+		.input .text:before{
+			content: attr(data-content);
+		}
+		.input .text:after{
+			content: '';
+			border-right: 2px solid blue;
+			animation: shan .7s forwards infinite;
+		}
+		@keyframes shan{
+			from{
+				opacity: 1;
+			}
+			to{
+				opacity: 0;
+			}
+		}
+		.input .btn{
+			width: 20%;
+			height: 45px;
+			color:#fff;
+			background-color: blue;
+			font-size:18px;
+			border-radius: 4px;
+		}
+		table{
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			height: 300px;
+			width: 100%;
+			text-align: center;
+			border-collapse: collapse;
+		}
+		td{
+			border:1px solid #2c2c2c;
+			cursor: pointer;
+		}
+		.nums{
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="input">
+			<div class="text" data-content=""></div>
+			<div class="btn">提交</div>
+		</div>
+		<table>
+			<tr>
+				<td class="nums">1</td>
+				<td class="nums">2</td>
+				<td class="nums">3</td>
+				<td class="close">close</td>
+			</tr>
+			<tr>
+				<td class="nums">4</td>
+				<td class="nums">5</td>
+				<td class="nums">6</td>
+				<td class="back">back</td>
+			</tr>
+			<tr>
+				<td class="nums">7</td>
+				<td class="nums">8</td>
+				<td class="nums">9</td>
+				<td rowspan="2" class="cf">confirm</td>
+			</tr>
+			<tr>
+				<td class="nums"></td>
+				<td class="nums">0</td>
+				<td class="nums"></td>
+			</tr>
+		</table>
+	</div>
+<script type="text/javascript">
+	var nums = document.querySelectorAll('.nums');
+	var fInput = document.querySelector('.text');
+	var fBack = document.querySelector('.back')
+	// console.log(nums)
+	var value = '';
+	nums.forEach(function(ele){
+		ele.addEventListener('click',function(){
+			if(value.length > 18){
+				return
+			}
+			value += this.innerHTML;
+			console.log(value)
+			setDataValue(value)
+		})
+	})
+	function setDataValue(str){
+		fInput.setAttribute('data-content',str);		
+	}
+	fBack.addEventListener('click',function(){
+		value = value.slice(0,value.length-1);
+		setDataValue(value);
+	})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../lib/jquery-2.1.1.js"></script>
+	<script type="text/javascript" src="http://api.tigerz.nz/rest/getOtherBuildingInfo/hotel?callback=jsonpCallback"></script>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	$(function(){
+		var myUrl = 'http://api.tigerz.nz/rest/getOtherBuildingInfo/hotel'
+		$.ajax({
+		　　type:"GET",
+		　　url:myUrl,
+		　　success:function(data){
+		　　　　console.log(data)
+		　　}
+		});
+	})
+</script>
+</html>

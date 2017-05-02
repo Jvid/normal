@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0
+		}
+		.wrap{
+			width: 640px;
+			height: 300px;
+			margin: 30px auto;
+		}
+		.wrap li{
+			float: left;
+			margin:0 10px;
+			width: 300px;
+			height: 300px;
+			list-style: none;
+			border:2px solid transparent;
+		}
+		#wrap1{
+			background: red;
+		}
+		#wrap2{
+			background:green;
+		}
+	</style>
+</head>
+<body>
+	<ul class="wrap">
+		<li id="wrap1"></li>
+		<li id="wrap2"></li>
+	</ul>
+</body>
+<script type="text/javascript">
+	var aLi = document.getElementsByTagName('li');
+	var liArr = [];
+	for(var i = 0; i < aLi.length; i++){
+		liArr.push([aLi[i].offsetLeft,aLi.offsetTop]);
+	}
+	for(var i = 0; i < aLi.length; i++ ){
+		aLi[i].style.position = 'absolute';
+		aLi[i].style.left = liArr[i][0]+ 'px';
+		aLi[i].style.top = liArr[i][1] + 'px';
+		aLi[i].style.margin = 0;
+		movefn(aLi[i])
+	}
+	function impact(obj1,obj2){
+		var l1 = obj1.offsetLeft,
+			r1 = obj1.offsetLeft + obj1.offsetWidth,
+			t1 = obj1.offsetTop,
+			b1 = obj1.offsetTop + obj1.offsetHeight;
+
+		var l2 = obj2.offsetLeft,
+			r2 = obj2.offsetLeft + obj2.offsetWidth,
+			t2 = obj2.offsetTop,
+			b2 = obj2.offsetTop + obj2.offsetHeight;
+			if(l2 > r1 || r2 < l1 || t2 < b1 || b2 > t1){
+				console.log(1)
+				return false
+			}else{
+				console.log(2)
+				return true
+			}
+		// return (l2 > r1 || r2 < l1 || t2 < b1 || b2 > t1) ? false : true;
+	}
+	function movefn(obj){
+		obj.onmousedown = function(ev){
+	　　　　var oevent = ev || event;
+
+	　　　　var distanceX = oevent.clientX - obj.offsetLeft;
+	　　　　var distanceY = oevent.clientY - obj.offsetTop;
+
+			obj.onmousemove = function(ev){
+	　　　　　　var oevent = ev || event;
+	　　　　　　obj.style.left = oevent.clientX - distanceX + 'px';
+	　　　　　　obj.style.top = oevent.clientY - distanceY + 'px'; 
+				for(var j = 0; j < aLi.length; j++){
+					if(impact(aLi[j],obj) && obj != aLi[j]){
+						aLi[j].style.border = "2px solid cyan";
+					}
+				}
+	　　　　};
+	　　　　obj.onmouseup = function(){
+	　　　　　　obj.onmousemove = null;
+	　　　　　　document.onmouseup = null;
+	　　　　};
+		}
+	}
+</script>
+</html>

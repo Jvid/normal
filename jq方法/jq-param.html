@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">button</button>
+	<button id="btn2">button2</button>
+	<button id="btn3">button3</button>
+	<button id="btn4">button4</button>
+	<button id="btn5">button5</button>
+</body>
+<script type="text/javascript" src="../base/jquery-1.12.3.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#btn').on('click',{'name':'jvid'},function(event) {
+			var e = event || window.event;
+			console.log(e);
+			console.log(e.data);
+		});
+		$('#btn2').on('click',[1,2,3,4,5,6,7,8,9],function(event){
+			var e1 = event || window.event;
+			console.log(e1);
+			console.log(e1.data);
+		});
+		$('#btn3').on({
+			'click':function(event){
+				console.log(event)
+				console.log('click')
+			},
+			'mouseover':function(event){
+				console.log(event)
+				console.log('mouseover')
+			},
+			'mouseout':function(event){
+				console.log(event)
+				console.log('mouseout')
+			}
+		})
+		$('#btn4').on('click',[1,2,3,4],function(event){
+			console.log('1---------',event.data);
+		}).on('mouseover',{'name':'jvid'},function(event){
+			console.log('2---------',event.data);
+		}).on('mouseout','jingduo',function(event){
+			//传入的参数必须是一个对象  不是对象的话会影响事件的执行
+			console.log('out')
+			console.log('3---------',event.data);
+		})
+		var a = {'name':'jvid'}
+		setTimeout(function(){
+			a = {'name':'jingduo'}
+		},3000)
+		$('#btn5').on('mouseover',a,function(event){
+			//绑定的参数是在注册事件的时候已经固定好的  期间是不可咦改变的额
+			// console.log(event)
+			console.log(event.data)
+			// event.data = {'name':'duo'} 通过这个可以改变这个data的值但是  mouseover事件发生的时候的那个data是不会发生变化的
+			// console.log(event)
+		})
+
+
+	});
+</script>
+</html>
