@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0
+		}
+		div{
+			width: 200px;
+			height: 60px;
+		    margin: 50px auto;
+		}
+		div a {
+		    display: inline-block;
+		    width: 200px;
+		    height: 60px;
+		    background: #F98183;
+		    font-size: 24px;
+		    line-height: 60px;
+		    text-align: center;
+		    border-radius: 30px;
+		    color: white;
+		    text-shadow: 0 1px 0 #F8474F;
+		    cursor: pointer;
+		    position: relative;
+		    overflow: hidden;
+		    text-decoration: none;
+		  }
+		  a:before{
+			content: ' ';
+		    display: block;
+		    background: rgba(255, 255, 255, .2);
+		    position: absolute;
+		    left: 0;
+		    top: 0;
+		    right: 0;
+		    bottom: 0;
+		    border-radius: 30px;
+		    transform: scale(0, 1);
+		    -webkit-transform: scale(0, 1);
+		    transition: transform 0.3s ease;
+		    -webkit-transition: -webkit-transform 0.3s ease;
+		}
+		div:hover a:before{
+			content: ' ';
+		    display: block;
+		    background: rgba(255, 255, 255, .2);
+		    position: absolute;
+		    left: 0;
+		    top: 0;
+		    right: 0;
+		    bottom: 0;
+		    border-radius: 30px;
+		    transform: scale(1, 1);
+		    -webkit-transform: scale(1, 1);
+		}
+	</style>
+</head>
+<body>
+	<div><a href="#">鼠标放在我上面</a></div>
+</body>
+</html>

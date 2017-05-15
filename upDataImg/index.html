@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	//上传图片的函数 --- 机构logo
+(function(){
+    // //实例化一个上传对象
+    var uploader = new plupload.Uploader({
+        runtimes: 'html5,flash,html4',
+        container: 'container',
+        dragdrop: false,
+        max_file_size: '3mb',
+        browse_button: 'pickFiles',  //触发文件选择对话框的按钮，为那个元素id
+        url: $BASEURL +'/plupload/upload.do',  //服务器端的上传图片的地址
+        multi_selection: false,     //禁止上传多个文件
+        flash_swf_url: 'js/Moxie.swf',    //swf文件，当需要使用swf方式进行上传时需要配置该参数
+        sliverlight_xap_url: 'js/Moxie.xap', //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
+        auto_start: true,    //自动上传
+        multipart_params: { type:4 },  //上传时的附加参数，以键/值对的形式传入
+        filters: {
+            mime_types: [
+                //只允许上传图片文件 （注意，extensions中，逗号后面不要加空格）
+                { title: "图片文件", extensions: "jpg,jpeg,gif,png,bmp" }
+            ]
+        }
+    });
+    //在实例对象上调用init()方法进行初始化
+    uploader.init();
+    //文件添加到队列执行的函数
+    uploader.bind('FilesAdded', function(uploader) {
+        // console.log("文件添加");
+        uploader.start();
+    });
+    //文件上传时执行的函数
+    uploader.bind('UploadProgress', function(uploader, file) {
+        // console.log('上传中');
+
+    });
+
+    //文件上传完成
+    uploader.bind('FileUploaded', function(uploader, file, responseObject) {
+        // console.log(responseObject);
+        if(responseObject.status == 200){
+            var res = JSON.parse(responseObject.response);
+            afterUpload(res);
+        }
+    });
+
+    function afterUpload(res){
+        // console.log(res);
+        if(res.code == 0){
+            //上传成功
+            $('#pickFiles').css({
+                'background':'url('+res.data.pic+') no-repeat center center',
+                'background-size':'contain',
+                'border':'2px dashed #cdd1d8'
+            }).text('');
+            $('#organizationLogoUrl').val(res.data.pic);
+        }
+    }
+
+})();
+</script>
+</html>

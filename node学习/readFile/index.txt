@@ -1,0 +1,2 @@
+I am jingduo
+这是一个readFile的测试
