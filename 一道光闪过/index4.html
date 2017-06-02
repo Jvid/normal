@@ -17,6 +17,7 @@
 			line-height: 80px;
 			background:cyan;
 			color: yellow;
+			cursor: pointer;
 			position: relative;
 		}
 		h1:before{
@@ -28,15 +29,18 @@
 			right: 0;
 			bottom:0;
 			margin: auto;
-			height: 80px;
-			width: 0;
+			/*height: 80px;*/
+			transform: scale(0,1);
+			-webkit-transform: scale(0,1);
 			border-radius: 80px;
 			background:rgba(0,0,0,0.2);
-			transition: all linear .3s;
+			transition: all ease .3s;
 			cursor: pointer;
 		}
 		h1:hover:before{
-			width: 100%;
+			/*width: 100%;*/
+			transform: scale(1,1);
+			-webkit-transform: scale(1,1);
 		}
 		h2{
 			margin: 20px auto;
@@ -60,7 +64,7 @@
 			height: 2px;
 			background:cyan;
 			width: 0;
-			transition: all linear .3s;
+			transition: all ease .3s;
 		}
 		h2:hover:before{
 			width: 100%;

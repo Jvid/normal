@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h2 id="wrap"></h2>
+</body>
+<script type="text/javascript">
+// var wrap = document.getElementById('wrap');
+// var isPageVisibilitySupport = (function() {
+//     var support = false;
+//     if (typeof window.screenX === "number") {
+//         ["webkit", "moz", "ms", "o", ""].forEach(function(prefix) {
+//             if (document[prefix + (prefix? "H": "h") + "idden"] + "" !== "undefined") {
+//                 // support = true;\
+//                 var t = (prefix + (prefix ? "H": "h") + "idden");
+//                 return t;
+//             }
+//         });        
+//     }
+//     return support;
+// })();
+// console.log(isPageVisibilitySupport)
+// if(isPageVisibilitySupport){
+// 	console.log(document[isPageVisibilitySupport])
+// 	if(document[isPageVisibilitySupport]){
+// 		wrap.innerHTML += document.visibilityState + (new Date()).toString() + "<br/>"
+// 	}
+// 	// document.hidden
+// 	// document.visibilityState
+// }
+if(document.visibilityState == "visible"){
+	wrap.innerHTML += document.visibilityState + (new Date()).toString() + "<br/>"
+}
+</script>
+</html>

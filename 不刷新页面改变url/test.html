@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+	<h1>{{currentDate()}}</h1>
+</body>
+<script type="text/javascript">
+	angular.module('myApp',[])
+	.controller('myCtrl', ['$scope', function($scope){
+		var a = 0;
+		$scope.currentDate = function() {
+			a = Math.random();
+			return a;
+		}
+	}])
+</script>
+</html>
