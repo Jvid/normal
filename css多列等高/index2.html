@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0
+		}
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+		.wrap{
+			width: 500px;
+			height: 50%;
+			border:3px solid blue;
+			display: flex;
+			flex-direction: column;
+		}
+		.top{
+			height: 100px;
+			background: red;
+		}
+		.bottom{
+			background:yellow;
+			flex-grow: 1;
+		}
+	</style>
+</head>
+<body>
+	<!-- 有一个高度自适应的div，里面有两个div，一个高度100px，希望另一个填满剩下的高度。 -->
+	<div class="wrap">
+		<div class="top"></div>
+		<div class="bottom"></div>
+	</div>
+</body>
+</html>

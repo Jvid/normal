@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	[123,42,334,4,523,35].forEach(function(val,key) {
+		console.log(key,"-----",val)
+	})
+	console.log("ssd  dss ds    ".trim(),"ssd  dss ds    ".trim().length,"ssd  dss ds    ".length);
+
+function makeMap(str) {
+  var obj = {}, items = str.split(','), i;
+  for (i = 0; i < items.length; i++) {
+    obj[items[i]] = true;
+  }
+  return obj;
+}
+console.log(makeMap('a,d,c,sd,w,s,d'))
+
+</script>
+</html>

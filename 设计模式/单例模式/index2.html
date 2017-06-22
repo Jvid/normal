@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	var single = (function(){
+		var unique;
+		function Construct(){
+			this.name = "jvid";
+			this.age = 18;
+		}
+		unique = new Construct();
+		return function(){
+			return unique;
+		}
+	})()
+	var s1 = new single();
+	var s2 = new single();
+	console.log(s1,s2);
+</script>
+</html>

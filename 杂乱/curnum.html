@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../lib/jquery-2.1.1.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<p>sss</p>
+		<img src="2" alt="">
+		<p>ssds</p>
+		<img src="2" alt="">
+		<p>sssee</p>
+		<img src="2" alt="">
+		<p>ssswq</p>
+		<img src="2" alt="">
+		<p>sssttr</p>
+		<img src="2" alt="">
+		<p>sssyut</p>
+		<img src="2" alt="">
+		<p>hjksss</p>
+		<img src="2" alt="">
+		<p>jjgsss</p>
+		<img src="2" alt="">
+		<p>xewsss</p>
+		<img src="2" alt="">
+		<p>34sss</p>
+		<img src="2" alt="">
+		<p>etrsss</p>
+		<img src="2" alt="">
+		<p>3545sss</p>
+		<img src="2" alt="">
+	</div>
+</body>
+<script type="text/javascript">
+	$('#wrap').on('click',function(e) {
+		console.log(e.target.tagName);
+		if(e.target.tagName == "IMG"){
+			console.log($('#wrap').find('img').index())
+		}
+	})
+</script>
+</html>

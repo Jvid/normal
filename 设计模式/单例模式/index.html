@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	var sing = function(){
+		if(sing.unique !== undefined){
+			return sing.unique;
+		}
+		this.name = "jvid";
+		this.age = 18;
+		sing.unique = this;
+	}
+
+	var s1 = new sing();
+	var s2 = new sing();
+	console.log(s1,s2)
+
+</script>
+</html>

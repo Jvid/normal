@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" id="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+</head>
+<body ng-controller="myCtrl">
+	<button ng-click="showDiv = !showDiv">Toggle</button>
+	<input type="text" ng-model="testName">
+	<p>{{testName}}</p>
+	<div ng-if="showDiv">
+		<p>{{testName}}</p>
+		<input type="text" ng-model="testName">
+	</div>
+</body>
+<script type="text/javascript">
+	angular.module('myApp',[])
+	.controller('myCtrl', ['$scope', function($scope){
+		$scope.showDiv = false;
+		$scope.testName = "jvid";
+		$scope.$watch("testName",function(newValue,oldValue){
+			console.log("oldValue------",oldValue)
+			console.log("newValue------",newValue)
+		})
+		angular.forEach([1,23,4,5,6,7],function(va,key){
+			console.log(key,'-----',va)
+		})
+		var obj = {"name":"jvid","age":18}
+		angular.extend(obj,{"like":"reading"})
+		console.log(obj)
+		var obj2 = {"name":"jingduo","age":20}
+		var obj3 = angular.merge(obj,obj2)
+		console.log(obj3)
+		console.log(obj);
+		var ob1 = {"name":"jvid","like":{
+			"f":"running",
+			"r":"reading",
+			"x":"playing"
+		}}
+		var ob2 = {"name":"jingduo","like":{
+			"f":"eating",
+			"r":"reading",
+			"m":"sleeping"
+		}}
+		var ob3 = angular.merge({},ob1,ob2)
+		var ob4 = angular.merge({},ob1,ob2,true)
+		console.log("ob3------",ob3)
+		console.log("ob4------",ob4)
+	}])
+</script>
+</html>
