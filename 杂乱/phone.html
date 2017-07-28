@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0
+		}
+		h1{
+			width: 7.5rem;
+			height: .5rem;
+			background: cyan;
+			text-align: center;
+			line-height: .5rem;
+			font-size: .2rem;
+			margin: 0 auto;
+		}
+		.wrap{
+			width: 7.5rem;
+		}
+		.wrap button{
+			width: 3rem;
+			height: .3rem;
+			text-align: center;
+			line-height: .3rem;
+			outline: none;
+			border: none;
+			background:yellow;
+			color: #fff;
+		}
+		.wrap button:nth-of-type(1){
+			float: left;
+		}
+		.wrap button:nth-of-type(2){
+			float: right;
+			background:blue;
+		}
+	</style>
+	<meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+	<h1>This is a test</h1>
+	<div class="wrap">
+		<button>Button1</button>
+		<button>Button2</button>
+	</div>
+</body>
+<script type="text/javascript">
+window.onload = function(){
+	document.documentElement.style.fontSize = innerWidth / 7.5 + 'px';
+	window.onresize = function(){
+		document.documentElement.style.fontSize = innerWidth / 7.5 + 'px';
+	};
+}
+	
+</script>
+</html>

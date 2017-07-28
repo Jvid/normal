@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	function Base(){
+		/**
+	     * 常用类型检测
+	     */
+	    this.isDef = function (obj) {
+	        return (typeof(obj) != 'undefined');
+	    };
+	    this.isStr = function (obj) {
+	        return (typeof(obj) == 'string');
+	    };
+	    this.isNum = function (obj) {
+	        return (typeof(obj) == 'number');
+	    };
+	    this.isFunc = function (obj) {
+	        return (typeof(obj) == 'function');
+	    };
+	    this.isArr = function (obj) {
+	        return Object.prototype.toString.call(obj) === '[object Array]';
+	    };
+	    this.isObj = function (obj) {
+	        return (typeof(obj) == 'object') && !isArr(obj);
+	    };
+		this.$CACHE = {};
+	    /**
+	     * Cache读写
+	     */
+	    this.Cache = function () {
+	        if (this.isStr(arguments[0])) return arguments.length > 1 ? (this.$CACHE[arguments[0]] = arguments[1]) : this.$CACHE[arguments[0]];
+	        if (this.isObj(arguments[0]) && arguments.length == 1) {
+	            for (var o in arguments[0]) {
+	                this.$CACHE[o] = arguments[0][o];
+	            }
+	        }
+	    };
+		this.Cache('ACTION', {__hash_actions__: {}});
+	    this.Action = function () {
+	        if (arguments.length == 1) {
+	            if (this.isStr(arguments[0])) return this.Cache('ACTION')[arguments[0]];
+	            if (this.isObj(arguments[0])) {
+	                for (var o in arguments[0]) {
+	                    this.Cache('ACTION')[o] = arguments[0][o];
+	                }
+	            }
+	        }
+	        if (arguments.length > 1) Cache('ACTION')[arguments[0]] = arguments[1];
+	        if (arguments[2]) Cache('ACTION').__hash_actions__[arguments[0]] = arguments[1];
+	        console.log(this.$CACHE)
+	    };
+	}
+	var base = new Base();
+	base.Action("jingduo")
+	console.log(base)
+</script>
+</html>

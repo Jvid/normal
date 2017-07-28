@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	Cookie = function (key, value, expires) {
+        var arr, expires = expires || 0, now = new Date();
+        if (arguments.length > 1) {
+            now.setTime(now.getTime() + expires * 24 * 60 * 60 * 1000);
+            document.cookie = key + "=" + encodeURIComponent(value) + ";expires=" + now.toUTCString();
+        }
+        return (arr = document.cookie.match(new RegExp("(^| )" + key + "=([^;]*)(;|$)"))) ? decodeURIComponent(arr[2]) : null;
+    };
+   var temp = Cookie("name","jingduo",1);
+   console.log(temp)
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0
+		}
+		ul,li{
+			list-style: none;
+		}
+		.wrap{
+			width: 500px;
+			margin: 30px auto;
+			position: relative;
+			border: 1px solid #ccc;
+			padding: 20px 30px;
+		}
+		h1{
+			height: 20px;
+			line-height: 20px;
+			font-size: 16px;
+			text-align: center;
+		}
+		.line{
+			position: absolute;
+			left: 30px;
+			top: 60px;
+			bottom: 50px;
+			margin: auto;
+			width: 1px;
+			background: #ccc;
+		}
+		ul{
+			padding: 0 20px;
+		}
+		li{
+			padding: 10px 0;
+			font-size: 14px;
+			line-height: 14px;
+			position: relative;
+			border-bottom: 1px solid #ccc;
+		}
+		li:before{
+			content: '';
+			display:block;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: green;
+			border: 2px solid rgba(109,247,66,0.8);
+			position: absolute;
+			left: -25px;
+			top: 11px;
+			z-index: 9;
+		}
+		li:hover:before{
+			width: 10px;
+			height: 10px;
+			left: -27px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<h1>title.....</h1>
+		<ul>
+			<li>00000000000001&&&0001</li>
+			<li>00000000000002&&&0002</li>
+			<li>00000000000003&&&0003</li>
+			<li>0000000000<br>0004&&&0004</li>
+			<li>00000000000005&&&<br>00000000000005&&&0005</li>
+			<li>00000000000003&&&0003</li>
+			<li>0000000000<br>0004&&&0004</li>
+			<li>00000000000005&&&<br>00000000000005&&&0005</li>
+		</ul>
+		<div class="line"></div>
+	</div>
+</body>
+</html>

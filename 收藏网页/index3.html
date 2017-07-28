@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+ <a href="javascript:void(0);" id="test">收藏本站</a>
+	
+</body>
+<script>
+window.onload = function(){
+	var oA = document.getElementById('test');
+	oA.onclick = function(){
+		AddFavorite('百度','http://www.baidu.com')
+	}
+	function AddFavorite(title,url){
+		console.log("click");
+		if(document.all){
+			console.log("try external")
+		   window.external.addFavorite(url,title);
+		 }else if(window.sidebar){
+		 	console.log("try addPanel")
+	    	window.sidebar.addPanel(title,url,"");
+		 }else{
+	   		alert("抱歉，您所使用的浏览器无法完成此操作。\n\n请使用快捷键Ctrl+D进行添加！");
+		 }
+	 }
+}
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0
+		}
+		.test{
+			height: 1000px;
+			width: 800px;
+			background: red;
+		}
+	</style>
+	<script type="text/javascript" src="../lib/jquery-2.1.1.js"></script>
+</head>
+<body>
+	<div class="test"></div>
+	<a href="index2.html">跳转</a>
+	<div class="test"></div>
+</body>
+<script type="text/javascript">
+	$(function () {
+		var str = window.location.href;
+		str = str.substring(str.lastIndexOf("/") + 1);
+		if ($.cookie(str)) {
+			$("html,body").css({ scrollTop: $.cookie(str)});
+		}
+	})
+	$(window).scroll(function () {
+		var str = window.location.href;
+		str = str.substring(str.lastIndexOf("/") + 1);
+		var top = $(document).scrollTop();
+		$.cookie(str, top, { path: '/' });
+		return $.cookie(str);
+	})
+</script>
+</html>

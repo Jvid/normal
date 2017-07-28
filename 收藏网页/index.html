@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="#" onclick="addfavorite()">加入收藏！</a>
+</body>
+<script type="text/javascript">
+function addfavorite()
+{
+  if (document.all)
+  {
+   window.external.addFavorite(window.location, document.title);
+  }
+  else if (window.sidebar)
+  {
+   window.sidebar.addPanel(document.title, window.location);
+  }
+} 
+</script>
+</html>

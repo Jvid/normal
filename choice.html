@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.wrap {
+				width: 100%;
+				height: 100%;
+			}
+			.wrap form {
+				width: 400px;
+				margin: 50px auto 0;
+			}
+			.wrap form textarea {
+				width: 100%;
+				padding: 5px 0 0 5px;
+				text-align: left;
+				font-size: 16px;
+				resize: none;
+				outline: none;
+			}
+			.con, #nowText {
+				width: 400px;
+				margin: 12px auto 0;
+				font-size: 18px;
+				font-weight: bold;
+				text-align: center;
+			}
+			.con p {
+				line-height: 25px;
+			}
+			.btn {
+				width: 300px;
+				height: 30px;
+				margin: 15px auto 0;
+				background-color: #ffaa00;
+				color: #fff;
+				font-size: 18px;
+				font-weight: bold;
+				text-align: center;
+				line-height: 30px;
+				border-radius: 10px;
+				-webkit-user-select: none;
+			}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+	<form action="" method="">
+		<textarea name="" id="test" cols="30" rows="6">HTML5学堂由几位讲师倾心打造，
+或许这里没有最牛的技术，
+但却将HTML5最浅显易懂的表达了出来，
+现在HTML5学堂将更名为码匠，
+匠人匠心，码出多彩的程序人生。</textarea>
+	</form>
+</div>
+<div id="con" class="con"></div>
+<div id="btn" class="btn">选中文本框内容，点击此按钮</div>
+<div id="nowText">当前文本：HTML5学堂</div>
+</body>
+<script type="text/javascript">
+	var test = document.getElementById("test"),
+	  con = document.getElementById("con"),
+	  btn = document.getElementById("btn"),
+ nowText = document.getElementById("nowText");
+
+// 鼠标事件
+test.onmouseup = selectText;
+function selectText() {
+	// getSelection()返回一个Selection对象，表示用户选择的文本，支持谷歌和FF等
+	if(window.getSelection) { 
+		text = window.getSelection();
+	} else {
+		if(document.getSelection) {
+			text = document.getSelection();
+		} else {
+			if(document.selection) {
+				// selection()只支持IE，表示用户选择文本
+				// document.selection.createRange().htmlText获得包含html的内容
+				text = document.selection.createRange().htmlText;
+			} else {
+				text = "";
+			}
+		}
+	}
+	// 把用户选择到的文本填充到当前文本位置
+	nowText.innerHTML = text;
+}
+
+// 按钮事件
+btn.onclick = function () {
+	var arr = nowText.innerHTML.split('\n');
+	for (var i = 0; i < arr.length; i++) {
+		// 填充用户选择到的文本
+		con.innerHTML += '<p>' + arr[i] + '</p>';
+	};
+}
+</script>
+</html>
